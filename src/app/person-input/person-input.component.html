@@ -1,0 +1,93 @@
+<div class="container-fluid">
+  <h1>Welcome {{familyRegistrationService.family.surname}} Family.</h1>
+</div>
+<form [formGroup]="personForm" (ngSubmit)="next()">
+  <div class="container">
+    <h2>Person Details</h2>
+
+    <mat-form-field appearance="standard" class="input-standard">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" required>
+    </mat-form-field><br/>
+
+    <mat-radio-group aria-label="Gender" formControlName="male">
+      <mat-radio-button value='true' [checked]="personForm.value.male">Male</mat-radio-button>&nbsp;&nbsp;
+      <mat-radio-button value='false' [checked]="!personForm.value.male">Female</mat-radio-button>
+    </mat-radio-group><br/>
+
+    <mat-form-field appearance="standard" class="input-5">
+      <mat-label>Salutation</mat-label>
+      <input matInput formControlName="salutation" required>
+    </mat-form-field>&nbsp;&nbsp;
+
+    <mat-form-field appearance="standard" class="input-5">
+      <mat-label>Suffix</mat-label>
+      <input matInput formControlName="suffix">
+    </mat-form-field><br/>
+
+    <div *ngIf="personForm.get('male').value == 'false'">
+      <mat-form-field appearance="standard" class="input-standard">
+        <mat-label>Maiden Name</mat-label>
+        <input matInput formControlName="maidenName">
+      </mat-form-field><br/>
+    </div>
+
+    <mat-form-field appearance="standard" class="input-standard">
+      <mat-label>Nickname</mat-label>
+      <input matInput formControlName="nickname">
+    </mat-form-field><br/>
+
+    <mat-checkbox formControlName="headOfHousehold"> Head of Household</mat-checkbox><br/>
+
+    <mat-form-field appearance="standard" class="input-standard">
+      <mat-label>Email</mat-label> 
+      <input matInput formControlName="email" required>
+    </mat-form-field><br/>
+
+    <mat-form-field appearance="standard" >
+      <input matInput formControlName="birthdate" [matDatepicker]="picker" placeholder="Birthdate">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field><br/>
+
+    <sc-multi-phone-number formControlName="phoneNumbers"></sc-multi-phone-number>  
+
+
+    <div>
+      <div>
+        <strong>Sacramental History</strong><br/><br/>
+        <mat-checkbox formControlName="baptized"> Baptized</mat-checkbox>&nbsp;&nbsp;
+        <mat-checkbox formControlName="confession"> Confession</mat-checkbox>&nbsp;&nbsp;
+        <mat-checkbox formControlName="communion"> First Communion</mat-checkbox>&nbsp;&nbsp;
+        <mat-checkbox formControlName="confirmed"> Confirmed</mat-checkbox>&nbsp;&nbsp;
+        <mat-checkbox formControlName="holyOrders"> Holy Orders</mat-checkbox><br/>
+        
+        <app-sc-enum formControlName="maritalStatus" label="Marital Status" [valueSource]="maritalStatuses"></app-sc-enum>
+      </div>
+
+      <div>
+        <strong>Demographic Information</strong><br/>
+        <div class="row">
+          <div class="col">
+            <app-sc-enum formControlName="primaryLanguage" label="Primary Language" [valueSource]="languages"></app-sc-enum>
+            <app-sc-enum formControlName="ethnicity" label="Ethnicity" [valueSource]="ethnicities"></app-sc-enum>
+            <mat-form-field appearance="standard" class="input-standard">
+              <mat-label>Occupation</mat-label>
+              <input matInput formControlName="occupation">
+            </mat-form-field><br/>
+
+          </div>
+          <div class="col">
+            <app-sc-enum formControlName="religion" label="Religion" [valueSource]="religions"></app-sc-enum>
+            <app-sc-multi-enum formControlName="specialNeeds" label="SpecialNeeds" [valueSource]="specialNeeds"></app-sc-multi-enum>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <button class="btn btn-outline-primary" (click)="back()"><< Back</button>
+    <button class="btn btn-primary" (click)="addAnother()" [disabled]="!personForm.valid">Add another</button>
+    <button class="btn btn-primary" type="submit" [disabled]="!personForm.valid">Next >></button>
+  </div>
+</form>

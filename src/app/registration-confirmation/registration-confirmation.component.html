@@ -1,0 +1,24 @@
+<h1>Please confirm your registration details:</h1>
+
+<h2>Family Name: {{family.surname}}</h2>
+<span *ngIf="family.phoneNumber">Home phone: {{family.phoneNumber}}<br/></span>
+<span *ngIf="family.address">Home Address: {{family.address.street1}}, {{family.address.city}}, {{family.address.state}} {{family.address.zip}}<br/></span>
+<br/>
+
+<h2>Family Members:</h2>
+<table>
+  <thead>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Phone number</th>
+    <th>Age</th>
+  </thead>
+  <tr *ngFor="let person of family.members">
+    <th>{{person.name}}</th>
+    <th>{{person.email}}</th>
+    <th>{{person.phoneNumbers.length > 0? person.phoneNumbers[0].phoneNumber: ''}}</th>
+    <th>{{person.birthdate | date: 'd/M/yyyy'}}</th>
+  </tr>
+</table>
+
+<button class="btn btn-primary" (click)="register()">Register</button>
