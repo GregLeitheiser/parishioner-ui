@@ -1,0 +1,49 @@
+.header {
+  .banner {
+    width: 100%;
+    height: 300px;
+  }
+
+  .portrait {
+    position: absolute;
+    height: 200px;
+    left: 50px;
+    top: 125px;
+  }
+
+  .spacer {
+    height: 40px;
+    background-color: #000000;
+  }
+}
+
+.footer {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  background: #666666;
+  color: #ffffff;
+  margin: 0px;
+  padding: 5px;
+
+  a {
+    color: #ffffff;
+    text-decoration: underline;
+
+    :hover {
+      color: #ffffff;
+    }
+  }
+
+  .logo {
+    height: 24px;
+  }
+
+  .copyright {
+    text-align: center;
+  }
+
+  .right {
+    text-align: right;
+  }
+}

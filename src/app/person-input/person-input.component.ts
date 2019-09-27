@@ -65,6 +65,7 @@ export class PersonInputComponent implements OnInit {
     this.personForm.get('religion').setValue('CATHOLIC');
     this.personForm.get('ethnicity').setValue(ethnicity);
     this.personForm.get('primaryLanguage').setValue(language);
+    this.personForm.get('male').setValue(false);
   }
 
   back() {

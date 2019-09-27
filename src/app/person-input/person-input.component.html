@@ -39,15 +39,15 @@
 
     <mat-checkbox formControlName="headOfHousehold"> Head of Household</mat-checkbox><br/>
 
-    <mat-form-field appearance="standard" class="input-standard">
-      <mat-label>Email</mat-label> 
-      <input matInput formControlName="email" required>
-    </mat-form-field><br/>
-
     <mat-form-field appearance="standard" >
       <input matInput formControlName="birthdate" [matDatepicker]="picker" placeholder="Birthdate">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field><br/>
+
+    <mat-form-field appearance="standard" class="input-standard">
+      <mat-label>Email</mat-label> 
+      <input matInput formControlName="email">
     </mat-form-field><br/>
 
     <sc-multi-phone-number formControlName="phoneNumbers"></sc-multi-phone-number>  

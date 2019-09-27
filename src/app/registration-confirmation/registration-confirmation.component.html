@@ -14,10 +14,10 @@
     <th>Age</th>
   </thead>
   <tr *ngFor="let person of family.members">
-    <th>{{person.name}}</th>
-    <th>{{person.email}}</th>
-    <th>{{person.phoneNumbers.length > 0? person.phoneNumbers[0].phoneNumber: ''}}</th>
-    <th>{{person.birthdate | date: 'd/M/yyyy'}}</th>
+    <td>{{person.name}}</td>
+    <td>{{person.email}}</td>
+    <td>{{(person.phoneNumbers && person.phoneNumbers.length > 0)? person.phoneNumbers[0].phoneNumber: ''}}</td>
+    <td>{{person.birthdate | date: 'd/M/yyyy'}}</td>
   </tr>
 </table>
 
