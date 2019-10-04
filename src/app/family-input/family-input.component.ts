@@ -32,6 +32,6 @@ export class FamilyInputComponent implements OnInit {
     const family = this.familyForm.value;
     family.members=[];
     this.familyRegistrationService.family = family;
-    this.router.navigate(['registration/person']);
+    this.router.navigate(['person']);
   }
 }

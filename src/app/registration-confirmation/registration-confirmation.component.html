@@ -1,24 +1,37 @@
-<h1>Please confirm your registration details:</h1>
+<div class="container">
+  <h1 *ngIf="family">Please confirm your registration details.</h1>
+  <h1 *ngIf="!family">Thank you for registering.</h1>
+</div>
 
-<h2>Family Name: {{family.surname}}</h2>
-<span *ngIf="family.phoneNumber">Home phone: {{family.phoneNumber}}<br/></span>
-<span *ngIf="family.address">Home Address: {{family.address.street1}}, {{family.address.city}}, {{family.address.state}} {{family.address.zip}}<br/></span>
-<br/>
+<div *ngIf="family" class="container">
+  <h3>Family Name: {{family.surname}}</h3>
+  <span *ngIf="family.phoneNumber">Home phone: {{family.phoneNumber}}<br/></span>
+  <span *ngIf="family.address">Home Address: {{family.address.street1}}, {{family.address.city}}, {{family.address.state}} {{family.address.zip}}<br/></span>
+  <br/>
 
-<h2>Family Members:</h2>
-<table>
-  <thead>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Phone number</th>
-    <th>Age</th>
-  </thead>
-  <tr *ngFor="let person of family.members">
-    <td>{{person.name}}</td>
-    <td>{{person.email}}</td>
-    <td>{{(person.phoneNumbers && person.phoneNumbers.length > 0)? person.phoneNumbers[0].phoneNumber: ''}}</td>
-    <td>{{person.birthdate | date: 'd/M/yyyy'}}</td>
-  </tr>
-</table>
+  <h3>Family Members:</h3>
+  <table>
+    <thead>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Primary Phone</th>
+      <th>Age</th>
+    </thead>
+    <tr *ngFor="let person of family.members">
+      <td>{{person.name}}</td>
+      <td>{{person.email}}</td>
+      <td>{{(person.phoneNumbers && person.phoneNumbers.length > 0)? person.phoneNumbers[0].phoneNumber: ''}}</td>
+      <td>{{currentAge(person.birthdate)}}</td>
+    </tr>
+  </table><br/>
+</div>
 
-<button class="btn btn-primary" (click)="register()">Register</button>
+<div class="container controls">
+  <div class="row">
+    <div class="col-8">
+        <button class="btn btn-outline-primary" (click)="back()">Start Over</button>
+    </div>
+    <div class="col-4">
+      <button *ngIf="family" class="btn btn-primary" (click)="register()">Register</button>
+    </div>
+</div>

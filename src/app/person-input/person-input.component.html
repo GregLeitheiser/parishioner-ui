@@ -1,9 +1,11 @@
-<div class="container-fluid">
-  <h1>Welcome {{familyRegistrationService.family.surname}} Family.</h1>
-</div>
 <form [formGroup]="personForm" (ngSubmit)="next()">
   <div class="container">
-    <h2>Person Details</h2>
+    <div>
+      <h1>Welcome {{familyRegistrationService.family.surname}} Family.</h1>
+    </div>
+
+    <h2 *ngIf="!familyRegistrationService.family.members || familyRegistrationService.family.members.length == 0">Please tell us about the head of your household.</h2>
+    <h2 *ngIf="familyRegistrationService.family.members && familyRegistrationService.family.members.length > 0">Please tell us about another person.</h2>
 
     <mat-form-field appearance="standard" class="input-standard">
       <mat-label>Name</mat-label>
@@ -85,9 +87,15 @@
       </div>
     </div>
   </div>
-  <div class="container">
-    <button class="btn btn-outline-primary" (click)="back()"><< Back</button>
-    <button class="btn btn-primary" (click)="addAnother()" [disabled]="!personForm.valid">Add another</button>
-    <button class="btn btn-primary" type="submit" [disabled]="!personForm.valid">Next >></button>
+  <div class="container controls">
+    <div class="row">
+      <div class="col-8">
+        <button class="btn btn-outline-primary" (click)="back()"><< Back</button>
+      </div>
+      <div class="col-4">
+        <button class="btn btn-primary" (click)="addAnother()" [disabled]="!personForm.valid">Add another</button>&nbsp;&nbsp;
+        <button class="btn btn-primary" type="submit" [disabled]="!personForm.valid">Next >></button>
+      </div>
+    </div>
   </div>
 </form>

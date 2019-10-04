@@ -26,8 +26,9 @@ help: ## This help.
 
 # DOCKER TASKS
 # Build the container
-build: build-webapp bump-version ## Build the container
-	ng build -c production
+build: build-webapp docker ## Build the container
+
+docker: bump-version 
 	docker.exe build -t servantcode/$(APP_NAME) .
 	docker.exe tag servantcode/$(APP_NAME) servantcode/$(APP_NAME):$(VERSION)
 
@@ -36,7 +37,7 @@ build-nc: ## Build the container without caching
 	docker.exe tag servantcode/$(APP_NAME) servantcode/$(APP_NAME):$(VERSION)
 
 build-webapp:
-	ng build -c production
+	ng build -c production --base-href /registration/
 
 run: ## Run container on port configured in `config.env`
 	kubectl.exe create -f kube.yml
@@ -47,11 +48,11 @@ update:
 stop: ## Stop and remove a running container
 	kubectl.exe delete -f kube.yml
 
-release: build-webapp bump-patch-version build-nc publish 
+release: bump-patch-version build-nc publish 
 
-minor-release: build-webapp bump-minor-version build-nc publish 
+minor-release: bump-minor-version build-nc publish 
 
-major-release: build-webapp bump-major-version build-nc publish 
+major-release: bump-major-version build-nc publish 
 
 # Docker publish
 publish:

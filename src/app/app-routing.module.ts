@@ -8,10 +8,10 @@ import { PersonInputComponent } from './person-input/person-input.component';
 import { RegistrationConfirmationComponent } from './registration-confirmation/registration-confirmation.component';
 
 const routes: Routes = [
-  { path: 'registration/family', component: FamilyInputComponent},
-  { path: 'registration/person', component: PersonInputComponent},
-  { path: 'registration/confirm', component: RegistrationConfirmationComponent},
-  { path: '', redirectTo: '/registration/family', pathMatch: 'full' },
+  { path: 'family', component: FamilyInputComponent},
+  { path: 'person', component: PersonInputComponent},
+  { path: 'confirm', component: RegistrationConfirmationComponent},
+  { path: '', redirectTo: '/family', pathMatch: 'full' },
   // { path: 'not-found', component: NotFoundComponent },
   // { path: '**', component: NotFoundComponent }
 ];

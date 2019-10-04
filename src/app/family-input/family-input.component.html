@@ -1,9 +1,9 @@
-<div class="container-fluid">
+<div class="container">
   <h1>Welcome to {{organizationService.activeOrgName()}}.</h1>
 </div>
 <form [formGroup]="familyForm" (ngSubmit)="next()">
   <div class="container">
-    <h2>Family Details</h2>
+    <h2>Please tell us about your family.</h2>
 
     <mat-form-field appearance="standard" class="input-standard">
       <mat-label>Family Name</mat-label>
@@ -14,7 +14,13 @@
 
     <app-address formControlName="address"></app-address>
   </div>
-  <div class="container">
-    <button class="btn btn-primary" type="submit" [disabled]="!familyForm.valid">Next >></button>
+  <div class="container controls">
+    <div class="row">
+      <div class="col-8">
+      </div>
+      <div class="col-4">
+        <button class="btn btn-primary" type="submit" [disabled]="!familyForm.valid">Next >></button>
+      </div>
+    </div>
   </div>
 </form>

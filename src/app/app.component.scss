@@ -13,13 +13,35 @@
 
   .spacer {
     height: 40px;
-    background-color: #000000;
+  }
+}
+
+.page-wrap {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 1;
+}
+
+
+/*
+ * Make the Component injected by Router Outlet full height:
+ */
+main {
+  display: flex;
+  flex-direction: column;
+  > *:not(router-outlet) {
+    flex: 1;
+    display: block;
   }
 }
 
 .footer {
-  position: absolute;
-  bottom: 0px;
+  /*position: absolute;*/
+  /*bottom: 0px;*/
   width: 100%;
   background: #666666;
   color: #ffffff;

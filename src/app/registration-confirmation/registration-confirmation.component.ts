@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { differenceInYears } from 'date-fns';
 
 import { SCValidation, Family, PersonService } from 'sc-common';
 
@@ -22,14 +23,17 @@ export class RegistrationConfirmationComponent implements OnInit {
   }
 
   back() {
-    this.router.navigate(['registration/person']);
+    this.router.navigate(['family']);
   }
 
   register() {
-    alert("Submitting registration for: " + JSON.stringify(this.family));
     this.familyRegistrationService.registerFamily(this.family).subscribe(() => {
       this.familyRegistrationService.clear();
       this.family = null;
     });
+  }
+
+  currentAge(birthdate: Date): number {
+    return differenceInYears(new Date(), birthdate);
   }
 }

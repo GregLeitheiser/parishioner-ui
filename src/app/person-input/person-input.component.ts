@@ -22,7 +22,7 @@ export class PersonInputComponent implements OnInit {
       male: true,
       email: ['', [Validators.pattern(SCValidation.EMAIL)]],
       phoneNumbers: [null],
-      headOfHousehold: [''],
+      headOfHousehold: [true],
       birthdate: [''],
       memberSince: [new Date()],
       parishioner: [true],
@@ -69,12 +69,12 @@ export class PersonInputComponent implements OnInit {
   }
 
   back() {
-    this.router.navigate(['registration/family']);
+    this.router.navigate(['family']);
   }
 
   next() {
     this.addPersonToFamily();
-    this.router.navigate(['registration/confirm']);
+    this.router.navigate(['confirm']);
   }
 
   private addPersonToFamily() {
