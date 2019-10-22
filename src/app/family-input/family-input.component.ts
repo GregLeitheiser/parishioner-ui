@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 
-import { SCValidation, Family, OrganizationService } from 'sc-common';
+import { SCValidation, Family, FamilyService, OrganizationService } from 'sc-common';
 
 import { FamilyRegistrationService } from '../services/family-registration.service';
 
@@ -16,13 +16,15 @@ export class FamilyInputComponent implements OnInit {
   familyForm = this.fb.group({
       surname: ['', Validators.required],
       homePhone: ['', Validators.pattern(SCValidation.PHONE)],
-      address: null
+      address: null,
+      preferences: null
     });
 
 
   constructor(private fb: FormBuilder,
               private router: Router,
               public organizationService: OrganizationService,
+              public familyServie: FamilyService,
               private familyRegistrationService: FamilyRegistrationService) { }
 
   ngOnInit() {

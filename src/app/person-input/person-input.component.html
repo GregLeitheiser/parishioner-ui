@@ -4,18 +4,29 @@
       <h1>Welcome {{familyRegistrationService.family.surname}} Family.</h1>
     </div>
 
-    <h2 *ngIf="!familyRegistrationService.family.members || familyRegistrationService.family.members.length == 0">Please tell us about the head of your household.</h2>
-    <h2 *ngIf="familyRegistrationService.family.members && familyRegistrationService.family.members.length > 0">Please tell us about another person.</h2>
+    <h2>{{generateHeader()}}</h2>
 
     <mat-form-field appearance="standard" class="input-standard">
       <mat-label>Name</mat-label>
       <input matInput formControlName="name" required>
     </mat-form-field><br/>
 
-    <mat-radio-group aria-label="Gender" formControlName="male">
-      <mat-radio-button value='true' [checked]="personForm.value.male">Male</mat-radio-button>&nbsp;&nbsp;
-      <mat-radio-button value='false' [checked]="!personForm.value.male">Female</mat-radio-button>
-    </mat-radio-group><br/>
+    <table class="input-height">
+      <tr>
+        <td>
+          <mat-radio-group aria-label="Gender" formControlName="male">
+            <mat-radio-button [value]=true>Male</mat-radio-button>&nbsp;&nbsp;
+            <mat-radio-button [value]=false>Female</mat-radio-button>
+          </mat-radio-group>&nbsp;&nbsp;
+        </td>
+        <td *ngIf="!personForm.get('male').value">
+          <mat-form-field  appearance="standard" class="input-standard">
+            <mat-label>Maiden Name</mat-label>
+            <input matInput formControlName="maidenName">
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
 
     <mat-form-field appearance="standard" class="input-5">
       <mat-label>Salutation</mat-label>
@@ -27,19 +38,12 @@
       <input matInput formControlName="suffix">
     </mat-form-field><br/>
 
-    <div *ngIf="personForm.get('male').value == 'false'">
-      <mat-form-field appearance="standard" class="input-standard">
-        <mat-label>Maiden Name</mat-label>
-        <input matInput formControlName="maidenName">
-      </mat-form-field><br/>
-    </div>
-
     <mat-form-field appearance="standard" class="input-standard">
       <mat-label>Nickname</mat-label>
       <input matInput formControlName="nickname">
     </mat-form-field><br/>
 
-    <mat-checkbox formControlName="headOfHousehold"> Head of Household</mat-checkbox><br/>
+    <!-- <mat-checkbox formControlName="headOfHousehold"> Head of Household</mat-checkbox><br/> -->
 
     <mat-form-field appearance="standard" >
       <input matInput formControlName="birthdate" [matDatepicker]="picker" placeholder="Birthdate">
@@ -53,7 +57,6 @@
     </mat-form-field><br/>
 
     <sc-multi-phone-number formControlName="phoneNumbers"></sc-multi-phone-number>  
-
 
     <div>
       <div>
@@ -86,6 +89,8 @@
         </div>
       </div>
     </div>
+
+    <sc-preference-form type="person" formControlName="preferences"></sc-preference-form>
   </div>
   <div class="container controls">
     <div class="row">

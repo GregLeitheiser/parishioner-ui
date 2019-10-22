@@ -28,6 +28,9 @@ help: ## This help.
 # Build the container
 build: build-webapp docker ## Build the container
 
+serve: 
+	ng s --port 4201 -o
+
 docker: bump-version 
 	docker.exe build -t servantcode/$(APP_NAME) .
 	docker.exe tag servantcode/$(APP_NAME) servantcode/$(APP_NAME):$(VERSION)

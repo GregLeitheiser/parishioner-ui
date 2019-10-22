@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 
-import { SCValidation, Family, PersonService } from 'sc-common';
+import { SCValidation, Family, PersonService, Person } from 'sc-common';
 
 import { FamilyRegistrationService } from '../services/family-registration.service';
 
@@ -36,7 +36,8 @@ export class PersonInputComponent implements OnInit {
       primaryLanguage: [null],
       religion: ['CATHOLIC'],
       specialNeeds: [[]],
-      occupation: ['']
+      occupation: [''],
+      preferences: {}
     });
 
   public maritalStatuses = this.personService.getMaritalStatuses.bind(this.personService);
@@ -51,10 +52,14 @@ export class PersonInputComponent implements OnInit {
               public familyRegistrationService: FamilyRegistrationService) { }
 
   ngOnInit() {
+    this.personForm.get('male').valueChanges.subscribe(isMale => {
+        const predictedSalutation = isMale? 'Mr.': this.isLikelySpouse()? 'Mrs.': 'Ms.';
+        this.personForm.get('salutation').setValue(predictedSalutation);
+      })
   }
 
   addAnother() {
-    this.addPersonToFamily();
+    const lastPerson = this.addPersonToFamily();
 
     const ethnicity = this.personForm.get('ethnicity').value;
     const language = this.personForm.get('primaryLanguage').value;
@@ -65,7 +70,18 @@ export class PersonInputComponent implements OnInit {
     this.personForm.get('religion').setValue('CATHOLIC');
     this.personForm.get('ethnicity').setValue(ethnicity);
     this.personForm.get('primaryLanguage').setValue(language);
-    this.personForm.get('male').setValue(false);
+    this.personForm.get('male').setValue(true);
+
+
+    if(this.isLikelySpouse()) {
+      this.personForm.get('maritalStatus').setValue(lastPerson.maritalStatus);
+      this.personForm.get('male').setValue(!lastPerson.male);
+    }
+  }
+
+  private isLikelySpouse(): boolean {
+    const familyMembers = this.familyRegistrationService.family.members;
+    return familyMembers.length == 1 && familyMembers[0].maritalStatus.startsWith("MARRIED");
   }
 
   back() {
@@ -77,12 +93,23 @@ export class PersonInputComponent implements OnInit {
     this.router.navigate(['confirm']);
   }
 
-  private addPersonToFamily() {
+  generateHeader(): string {
+    const members = this.familyRegistrationService.family.members;
+    if(!members || members.length == 0)
+      return "Please tell us about the head of your household.";
+    else if(members.length == 1 && members[0].maritalStatus.startsWith('MARRIED'))
+      return `Please tell us about ${members[0].name.split(' ')[0]}'s spouse.`;
+    else           
+      return "Please tell us about another person.";
+  }
+
+  private addPersonToFamily(): Person {
     const person = this.personForm.value;
     const family = this.familyRegistrationService.family;
     if(!family.members)
       family.members=[];
     family.members.push(person);
     this.familyRegistrationService.family = family;
+    return person;
   }
 }
