@@ -16,6 +16,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { environment } from '../environments/environment'
 
@@ -73,9 +74,9 @@ export function tokenGetter() {
     MatToolbarModule,
     MatRadioModule,
     MatNativeDateModule,
+    MatDialogModule,
 
     BrowserAnimationsModule
-
   ],
   providers: [
     // { provide: HTTP_INTERCEPTORS, useClass: DateInterceptor, multi: true },
