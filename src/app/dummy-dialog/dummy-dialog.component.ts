@@ -8,7 +8,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 })
 export class DummyDialogComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<PhotoUploadDialogComponent>,
+  constructor(public dialogRef: MatDialogRef<DummyDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
