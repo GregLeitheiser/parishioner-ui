@@ -29,6 +29,7 @@ import { FamilyInputComponent } from './family-input/family-input.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PersonInputComponent } from './person-input/person-input.component';
 import { RegistrationConfirmationComponent } from './registration-confirmation/registration-confirmation.component';
+import { DummyDialogComponent } from './dummy-dialog/dummy-dialog.component';
 
 export function tokenGetter() {
   return localStorage.getItem('jwt-token');
@@ -39,7 +40,8 @@ export function tokenGetter() {
     AppComponent,
     FamilyInputComponent,
     PersonInputComponent,
-    RegistrationConfirmationComponent
+    RegistrationConfirmationComponent,
+    DummyDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -81,6 +83,9 @@ export function tokenGetter() {
   providers: [
     // { provide: HTTP_INTERCEPTORS, useClass: DateInterceptor, multi: true },
     { provide: 'environment', useValue: environment }
+  ],
+  entryComponents: [
+    DummyDialogComponent
   ],
   bootstrap: [AppComponent]
 })
