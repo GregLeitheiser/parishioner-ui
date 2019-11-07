@@ -1,8 +1,8 @@
 <div class="page-wrap">
   <header role="banner">
     <div class="header row">
-      <img class="banner" src="./assets/images/banner.png"/>
-      <img class="portrait" src="./assets/images/portrait.png"/>
+      <img class="banner" src="{{getBannerImage()}}"/>
+      <img *ngIf="parish && parish.portraitGuid" class="portrait" src="{{getPortriatImage()}}"/>
       <div class="spacer">&nbsp;</div>
     </div>
   </header>
