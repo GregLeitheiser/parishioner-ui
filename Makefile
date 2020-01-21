@@ -39,8 +39,12 @@ build-nc: ## Build the container without caching
 	docker.exe build --no-cache -t servantcode/$(APP_NAME) .
 	docker.exe tag servantcode/$(APP_NAME) servantcode/$(APP_NAME):$(VERSION)
 
-build-webapp:
+build-webapp: update-commons
 	ng build -c production --base-href /registration/
+
+update-commons:
+	npm remove sc-common
+	npm install ../parish-manager-ui/dist/sc-common
 
 run: ## Run container on port configured in `config.env`
 	kubectl.exe create -f kube.yml

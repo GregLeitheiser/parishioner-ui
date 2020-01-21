@@ -17,7 +17,6 @@
     "@angular/compiler": "^8.2.13",
     "@angular/core": "^8.2.13",
     "@angular/forms": "^8.2.13",
-    "@angular/http": "^7.2.15",
     "@angular/material": "~8.2.1",
     "@angular/platform-browser": "^8.2.13",
     "@angular/platform-browser-dynamic": "^8.2.13",
@@ -32,7 +31,7 @@
     "ngx-file-drop": "^8.0.8",
     "popper.js": "^1.16.0",
     "rxjs": "~6.5.3",
-    "sc-common": "file:../parish-manager-ui/dist/sc-common/sc-common-0.0.1.tgz",
+    "sc-common": "file:../parish-manager-ui/dist/sc-common",
     "tslib": "^1.10.0",
     "zone.js": "^0.9.1"
   },
