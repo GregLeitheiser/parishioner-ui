@@ -29,6 +29,8 @@ help: ## This help.
 build: build-webapp docker ## Build the container
 
 serve: 
+	@echo Do not forget to update-commons.
+	@echo
 	ng s --port 4201 -o
 
 docker: bump-version 
@@ -43,8 +45,8 @@ build-webapp: update-commons
 	ng build -c production --base-href /registration/
 
 update-commons:
-	npm remove sc-common
-	npm install ../parish-manager-ui/dist/sc-common
+	npm install ../parish-manager-ui/dist/sc-common/sc-common-*.tgz
+#	npm remove sc-common
 
 run: ## Run container on port configured in `config.env`
 	kubectl.exe create -f kube.yml

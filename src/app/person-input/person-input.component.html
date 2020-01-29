@@ -45,8 +45,8 @@
 
     <!-- <mat-checkbox formControlName="headOfHousehold"> Head of Household</mat-checkbox><br/> -->
 
-    <mat-form-field appearance="standard" >
-      <input matInput formControlName="birthdate" [matDatepicker]="picker" placeholder="Birthdate">
+    <mat-form-field appearance="standard">
+      <input matInput formControlName="birthdate" [matDatepicker]="picker" placeholder="Birthdate *" required=true>
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field><br/>
@@ -67,15 +67,15 @@
         <mat-checkbox formControlName="confirmed"> Confirmed</mat-checkbox>&nbsp;&nbsp;
         <mat-checkbox formControlName="holyOrders"> Holy Orders</mat-checkbox><br/>
         
-        <app-sc-enum formControlName="maritalStatus" label="Marital Status" [valueSource]="maritalStatuses"></app-sc-enum>
+        <app-sc-enum formControlName="maritalStatus" label="Marital Status" [valueSource]="maritalStatuses" required="true"></app-sc-enum>
       </div>
 
       <div>
         <strong>Demographic Information</strong><br/>
         <div class="row">
           <div class="col">
-            <app-sc-enum formControlName="primaryLanguage" label="Primary Language" [valueSource]="languages"></app-sc-enum>
-            <app-sc-enum formControlName="ethnicity" label="Ethnicity" [valueSource]="ethnicities"></app-sc-enum>
+            <app-sc-enum formControlName="primaryLanguage" label="Primary Language" [valueSource]="languages" required="true"></app-sc-enum>
+            <app-sc-enum formControlName="ethnicity" label="Ethnicity" [valueSource]="ethnicities" required="true"></app-sc-enum>
             <mat-form-field appearance="standard" class="input-standard">
               <mat-label>Occupation</mat-label>
               <input matInput formControlName="occupation">
@@ -83,7 +83,7 @@
 
           </div>
           <div class="col">
-            <app-sc-enum formControlName="religion" label="Religion" [valueSource]="religions"></app-sc-enum>
+            <app-sc-enum formControlName="religion" label="Religion" [valueSource]="religions" required="true"></app-sc-enum>
             <app-sc-multi-enum formControlName="specialNeeds" label="SpecialNeeds" [valueSource]="specialNeeds"></app-sc-multi-enum>
           </div>
         </div>

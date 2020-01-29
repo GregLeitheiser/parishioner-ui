@@ -16,7 +16,7 @@ export class FamilyInputComponent implements OnInit {
   familyForm = this.fb.group({
       surname: ['', Validators.required],
       homePhone: ['', Validators.pattern(SCValidation.PHONE)],
-      address: null,
+      address: [null, Validators.required],
       preferences: null
     });
 
