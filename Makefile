@@ -29,7 +29,12 @@ help: ## This help.
 build: build-webapp docker ## Build the container
 
 serve: 
-	@echo Do not forget to update-commons.
+	@echo
+	@echo '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'
+	@echo '!!                                    !!'
+	@echo '!!  Do not forget to update-commons.  !!'
+	@echo '!!                                    !!'
+	@echo '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'
 	@echo
 	ng s --port 4201 -o
 
