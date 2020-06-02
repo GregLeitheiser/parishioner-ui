@@ -3,15 +3,12 @@ import { RouterModule, Routes, CanActivate } from '@angular/router';
 
 // import { NotFoundComponent } from './not-found/not-found.component';
 
-import { FamilyInputComponent } from './family-input/family-input.component';
-import { PersonInputComponent } from './person-input/person-input.component';
-import { RegistrationConfirmationComponent } from './registration-confirmation/registration-confirmation.component';
+import { FormationRegistrationComponent } from './formation-registration/formation-registration.component';
 
 const routes: Routes = [
-  { path: 'family', component: FamilyInputComponent},
-  { path: 'person', component: PersonInputComponent},
-  { path: 'confirm', component: RegistrationConfirmationComponent},
-  { path: '', redirectTo: '/family', pathMatch: 'full' },
+  { path: 'formation', component: FormationRegistrationComponent }, 
+  { path: 'registration', redirectTo: 'registration/family', pathMatch: 'full' },
+  { path: '', redirectTo: 'registration/family', pathMatch: 'full' },
   // { path: 'not-found', component: NotFoundComponent },
   // { path: '**', component: NotFoundComponent }
 ];

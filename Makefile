@@ -47,7 +47,7 @@ build-nc: ## Build the container without caching
 	docker.exe tag servantcode/$(APP_NAME) servantcode/$(APP_NAME):$(VERSION)
 
 build-webapp: update-commons
-	ng build -c production --base-href /registration/
+	ng build -c production
 
 update-commons:
 	npm install ../parish-manager-ui/dist/sc-common/sc-common-*.tgz

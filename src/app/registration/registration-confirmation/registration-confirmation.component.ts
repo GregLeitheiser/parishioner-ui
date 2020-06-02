@@ -23,7 +23,7 @@ export class RegistrationConfirmationComponent implements OnInit {
   }
 
   back() {
-    this.router.navigate(['family']);
+    this.router.navigate(['registration', 'family']);
   }
 
   register() {

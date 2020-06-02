@@ -85,12 +85,12 @@ export class PersonInputComponent implements OnInit {
   }
 
   back() {
-    this.router.navigate(['family']);
+    this.router.navigate(['registration', 'family']);
   }
 
   next() {
     this.addPersonToFamily();
-    this.router.navigate(['confirm']);
+    this.router.navigate(['registration', 'confirm']);
   }
 
   generateHeader(): string {

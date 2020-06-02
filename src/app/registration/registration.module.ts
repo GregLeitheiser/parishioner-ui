@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms'
@@ -18,30 +19,24 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDialogModule } from '@angular/material/dialog';
 
-import { environment } from '../environments/environment'
+import { ScCommonModule } from 'sc-common';
 
-import { ScCommonModule, AddOrgRequestInterceptor } from 'sc-common';
+import { RegistrationRoutingModule } from './registration-routing.module';
 
-import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
-
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormationRegistrationComponent } from './formation-registration/formation-registration.component';
-
-import { RegistrationModule } from './registration/registration.module';
-
-export function tokenGetter() {
-  return localStorage.getItem('jwt-token');
-}
+import { FamilyInputComponent } from './family-input/family-input.component';
+import { PersonInputComponent } from './person-input/person-input.component';
+import { RegistrationConfirmationComponent } from './registration-confirmation/registration-confirmation.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    FormationRegistrationComponent
+    FamilyInputComponent,
+    PersonInputComponent,
+    RegistrationConfirmationComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+
+    RegistrationRoutingModule,
 
     ScCommonModule,
 
@@ -50,15 +45,6 @@ export function tokenGetter() {
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-
-    //JWT
-    JwtModule.forRoot({
-      config: {
-        tokenGetter: tokenGetter,
-        whitelistedDomains: environment.whitelistedDomains,
-        blacklistedRoutes: []
-      }
-    }),
 
     //Bootstrap
     NgbModule,
@@ -74,17 +60,7 @@ export function tokenGetter() {
     MatNativeDateModule,
     MatDialogModule,
 
-    BrowserAnimationsModule,
-
-    RegistrationModule
-  ],
-  providers: [
-    // { provide: HTTP_INTERCEPTORS, useClass: DateInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: AddOrgRequestInterceptor, multi: true},
-    { provide: 'environment', useValue: environment }
-  ],
-  entryComponents: [
-  ],
-  bootstrap: [AppComponent]
+    BrowserAnimationsModule
+  ]
 })
-export class AppModule { }
+export class RegistrationModule { }

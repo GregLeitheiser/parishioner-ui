@@ -1,0 +1,34 @@
+<div class="container-fluid">
+  <form [formGroup]="form" (ngSubmit)="save()">
+    <h1 mat-dialog-title>Formation Registration</h1>
+
+    <sc-auto-complete formControlName="familyId" label='Family Lookup' [autocompleteService]="familyService"></sc-auto-complete>
+
+    <sc-auto-complete formControlName="programId" label='Program' [autocompleteService]="programService"></sc-auto-complete>
+
+    <table *ngIf="family && program">
+      <tr *ngFor="let person of family.people">
+        <td>
+          {{person.name}}
+        </td>
+        <td>
+          <sc-auto-complete formControlName="enrolleeId" label='Student' [autocompleteService]="personService"></sc-auto-complete>
+        </td>
+        <td>
+          <mat-checkbox formControlName="registerPerson"> Register for course</mat-checkbox><br/>
+        </td>
+        <td>
+          <mat-form-field appearance="standard" class="input-5">
+            <mat-label>School Grade</mat-label>
+            <input maxlength="2" matInput formControlName="schoolGrade" autocomplete="off" cdkFocusInitial required/>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+
+    <div class="align-right">
+      <button mat-button type="submit" class="btn btn-primary" [disabled]="!form.valid">Save</button>&nbsp;&nbsp;
+      <!-- <button mat-button type="button" class="btn btn-outline-primary" (click)="cancel()">Close</button> -->
+    </div>
+  </form>
+</div>
