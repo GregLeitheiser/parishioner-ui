@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms'
@@ -25,7 +26,6 @@ import { ScCommonModule, AddOrgRequestInterceptor } from 'sc-common';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormationRegistrationComponent } from './formation-registration/formation-registration.component';
 
 import { RegistrationModule } from './registration/registration.module';

@@ -8,7 +8,7 @@ import { FormationRegistrationComponent } from './formation-registration/formati
 const routes: Routes = [
   { path: 'formation', component: FormationRegistrationComponent }, 
   { path: 'registration', redirectTo: 'registration/family', pathMatch: 'full' },
-  { path: '', redirectTo: 'registration/family', pathMatch: 'full' },
+  { path: '', redirectTo: 'registration/family', pathMatch: 'full' }
   // { path: 'not-found', component: NotFoundComponent },
   // { path: '**', component: NotFoundComponent }
 ];
